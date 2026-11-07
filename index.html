@@ -48,6 +48,16 @@
     header p {
       font-size: 1.1rem;
       opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Developer info style */
+    .developer-info {
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin-top: 5px;
     }
 
     .container {
@@ -195,6 +205,7 @@
   <header>
     <h1>Al Parvez Girls Degree College</h1>
     <p>Official Student Examination Result Portal</p>
+    <div class="developer-info">DEVELOPER: MOHAMMAD TARIQUE - 9792833369</div>
   </header>
 
   <div class="container">
@@ -204,14 +215,14 @@
           
           <div class="form-group">
             <label for="enrollment">Enrollment / Roll Number</label>
-            <input type="text" id="enrollment" placeholder="e.g. AP2026101" required>
+            <input type="text" id="enrollment" placeholder="e.g. AZU25116066" required>
           </div>
 
           <div class="form-group">
             <label for="course">Select Course</label>
             <select id="course" required>
               <option value="BA">BA (Bachelor of Arts)</option>
-              <option value="BSC">BSC (Bachelor of Science)</option>
+              <option value="BSE">BSC (Bachelor of Science)</option>
             </select>
           </div>
 
@@ -264,7 +275,6 @@
       const semester = document.getElementById('semester').value;
       const semFormatted = semester.replace('_', ' ');
 
-      // Updated Search Path: results/[Course]/[Semester]/[EnrollmentNo].pdf
       const fileName = `${enrollment}.pdf`;
       const filePath = `results/${course}/${semester}/${fileName}`;
 
@@ -275,23 +285,18 @@
       const studentSub = document.getElementById('studentSub');
       const statusMsg = document.getElementById('statusMsg');
 
-      // Header info update
       studentTitle.innerText = `Enrollment No: ${enrollment}`;
       studentSub.innerText = `Course: ${course} | ${semFormatted}`;
 
-      // Set PDF path for preview and download
       pdfFrame.src = filePath;
       downloadBtn.href = filePath;
       downloadBtn.setAttribute('download', `${enrollment}_${course}_${semester}.pdf`);
 
-      // Display result view
       resultSection.style.display = 'block';
 
-      // Status indicator
       statusMsg.style.display = 'block';
       statusMsg.innerHTML = `Searching file at: <code>${filePath}</code>`;
 
-      // Smooth scrolling
       resultSection.scrollIntoView({ behavior: 'smooth' });
     });
   </script>
